@@ -1,0 +1,16 @@
+
+.second-footer{
+    
+    justify-content: space-evenly;
+    font-size:small;
+   
+    p{
+        margin: 3px;
+    }
+}
+.third-footer{
+    
+    background-color: black;
+    justify-content: center;
+    justify-content: space-evenly;
+}

@@ -1,0 +1,376 @@
+const express =require("express")
+
+  const fs=require("fs")
+  const app=express()
+  const path=require("path")
+  const cors = require("cors")
+
+
+  const { MongoClient, ServerApiVersion } = require('mongodb');
+  const uri = "mongodb+srv://ushasree:<Usha1310>@spotifywebsite.uowrtpy.mongodb.net/?retryWrites=true&w=majority&appName=Spotifywebsite";
+
+  var encodedpassword = encodeURIComponent("Usha1310")
+  const newuri = uri.replace("<Usha1310>",encodedpassword)
+  app.use(cors())
+  app.listen(8003,()=>{
+        
+    const client = new MongoClient(newuri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      }
+    });
+
+      app.get("/",(req,res)=>{
+  
+      
+
+  //  Create a MongoClient with a MongoClientOptions object to set the Stable API version
+
+    
+    
+    
+    const ConnectServer=async()=>{
+
+        const res = await client.connect()
+        if(res){
+            console.log("connected")
+            
+        }
+        else{
+            console.log("error")
+        }
+    }
+    
+    ConnectServer()
+    
+    async function run() {
+    
+        // Connect the client to the server	(optional starting in v4.7)
+        await client.connect();
+        // Send a ping to confirm a successful connection
+        await client.db("admin").command({ ping: 1 });
+        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+        
+        const database = client.db("Spotifywebsite");
+        
+
+          
+        
+          
+
+      
+    }
+    run().catch(console.dir);
+    
+            
+        })
+      
+
+
+      app.get("/login",(req,res)=>{
+      
+    
+        
+    const ConnectServer=async()=>{
+
+      const res = await client.connect()
+
+
+
+      if(res){
+          console.log("connected")
+      }
+      else{
+          console.log("error")
+      }
+  }
+
+  ConnectServer()
+
+  async function run() {
+  
+      // Connect the client to the server	(optional starting in v4.7)
+      await client.connect();
+      // Send a ping to confirm a successful connection
+      await client.db("admin").command({ ping: 1 });
+      console.log("Pinged your deployment. You successfully connected to MongoDB!");
+      
+      const database = client.db("Spotifywebsite");
+      
+
+      
+        const phn = await database.collection("users").findOne({ email: req.query.email,password:req.query.password});
+
+        if (phn) {
+          res.send({status:"success",data:phn})
+          
+        } else {
+          res.send({status:"error"})
+          
+            // Do something if the phone number does not exist
+        }   
+      
+          
+  }
+
+  run().catch(console.dir);
+
+          
+      })
+      app.get("/signup",(req,res)=>{
+      
+    
+        
+        const ConnectServer=async()=>{
+      
+          const res = await client.connect()
+          if(res){
+              console.log("connected")
+          }
+          else{
+              console.log("error")
+          }
+      }
+      
+      ConnectServer()
+      
+      async function run() {
+      
+          // Connect the client to the server	(optional starting in v4.7)
+          await client.connect();
+          // Send a ping to confirm a successful connection
+          await client.db("admin").command({ ping: 1 });
+          console.log("Pinged your deployment. You successfully connected to MongoDB!");
+          //console.log(req.query)
+          const database=client.db("Spotifywebsite");
+        const collections=database.collection("users");
+        const phn=await collections.insertOne(req.query);
+        const phn1 = await database.collection("users").findOne({ email: req.query.email});
+        if(phn1){
+          res.send({status:"error",data:phn1
+            ,alerting:"already Used this Number"})
+          }
+          else{
+        const phn=await collections.insertOne(req.query);
+              console.log(phn)
+            if (phn) {
+    res.send({status:"success",data:phn,alerting:null})
+              
+            } else {
+              res.send({status:"error"})
+              
+                // Do something if the phone number does not exist
+            }
+          }
+        
+          
+          
+          
+            
+      
+        
+      }
+      run()
+      
+              
+          })
+
+          
+      })
+
+Telugusongs:
+
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import homeIcon from '../images/home_icon.png';
+import styled from 'styled-components';
+import '../css/search.css'; // Reusing the same CSS file for consistency
+
+// Importing images from the src folder
+import naatuNaatu from '../images/naatu-naatu.jpg';
+import buttaBomma from '../images/butta-bomma.jpg';
+import samajavaragamana from '../images/samajavaragamana.jpg';
+import ramulooRamulaa from '../images/ramuloo-ramulaa.jpg';
+import neeKannuNeeliSamudram from '../images/nee-kannu-neeli-samudram.jpg';
+
+// Sample list of Telugu songs with additional details
+const teluguSongs = [
+  { id: 1, title: 'Naatu Naatu', artist: 'Rahul Sipligunj, Kaala Bhairava', album: 'RRR', duration: '3:05', image: naatuNaatu },
+  { id: 2, title: 'Butta Bomma', artist: 'Armaan Malik', album: 'Ala Vaikunthapurramuloo', duration: '3:40', image: buttaBomma },
+  { id: 3, title: 'Samajavaragamana', artist: 'Sid Sriram', album: 'Ala Vaikunthapurramuloo', duration: '3:25', image: samajavaragamana },
+  { id: 4, title: 'Ramuloo Ramulaa', artist: 'Anurag Kulkarni, Mangli', album: 'Ala Vaikunthapurramuloo', duration: '3:15', image: ramulooRamulaa },
+  { id: 5, title: 'Nee Kannu Neeli Samudram', artist: 'Javed Ali, Srikanth Chandra', album: 'Rangamarthanda', duration: '4:00', image: neeKannuNeeliSamudram },
+];
+
+
+
+
+const TeluguSongs = () => {
+  const [currentSong, setCurrentSong] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlay = (song) => {
+    if (currentSong && currentSong.id === song.id && isPlaying) {
+      setIsPlaying(false);
+    } else {
+      setCurrentSong(song);
+      setIsPlaying(true);
+    }
+  };
+  return (
+    <div className='box-0'>
+        <div className='h d-flex'><HomeIcon to="/">
+          <img src={homeIcon} alt="Home" />
+        </HomeIcon>
+      <h2 className='p-3 ps-5 pe-5 text-white'>Telugu Songs</h2></div>
+      <div className='song-list'>
+        {teluguSongs.map((song) => (
+          <div key={song.id} className='song-item p-3 d-flex'>
+            <img src={song.image} alt={song.title} className='song-image' />
+            <div className='song-details flex-grow-1 ml-3'>
+              <div className='song-header'>
+                <h4 className='song-title'>{song.title}</h4>
+                <p className='artist'>{song.artist}</p>
+                <p className='album'>{song.album}</p>
+              </div>
+              <div className='song-info'>
+                <p className='duration'>{song.duration}</p>
+              </div>
+            </div>
+            <button className='play-button' onClick={() => handlePlay(song)}> {currentSong && currentSong.id === song.id && isPlaying ? '⏸' : '▶'}</button>
+          </div>
+        ))}
+{currentSong && (
+          <audio
+            src={currentSong.audio}
+            controls
+            autoPlay={isPlaying}
+            onEnded={() => setIsPlaying(false)}
+          />
+        )}
+        <div className='p-3'>
+          <Link to="/search" className='text-decoration-none text-white'>
+            Back to Categories
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TeluguSongs;
+
+const HomeIcon = styled(Link)`
+  width: 20px;
+  height: -10px;
+  
+  margin-right: 2px;
+  display: block;
+  cursor: pointer;
+`;
+
+
+
+Songs played:
+
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import homeIcon from '../images/home_icon.png';
+import '../css/search.css'; // Reusing the same CSS file for consistency
+
+import naatuNaatu from '../images/naatu-naatu.jpg';
+import buttaBomma from '../images/butta-bomma.jpg';
+import samajavaragamana from '../images/samajavaragamana.jpg';
+import ramulooRamulaa from '../images/ramuloo-ramulaa.jpg';
+import neeKannuNeeliSamudram from '../images/nee-kannu-neeli-samudram.jpg';
+
+// List of Telugu songs with audio file paths
+const teluguSongs = [
+  { id: 1, title: 'Naatu Naatu', artist: 'Rahul Sipligunj, Kaala Bhairava', album: 'RRR', duration: '3:05', image: naatuNaatu, audio: '/audio/naatu-naatu.mp3' },
+  { id: 2, title: 'Butta Bomma', artist: 'Armaan Malik', album: 'Ala Vaikunthapurramuloo', duration: '3:40', image: buttaBomma, audio: '/audio/butta-bomma.mp3' },
+  { id: 3, title: 'Samajavaragamana', artist: 'Sid Sriram', album: 'Ala Vaikunthapurramuloo', duration: '3:25', image: samajavaragamana, audio: '/audio/samajavaragamana.mp3' },
+  { id: 4, title: 'Ramuloo Ramulaa', artist: 'Anurag Kulkarni, Mangli', album: 'Ala Vaikunthapurramuloo', duration: '3:15', image: ramulooRamulaa , audio: '/audio/butta-bomma.mp3'},
+  { id: 5, title: 'Nee Kannu Neeli Samudram', artist: 'Javed Ali, Srikanth Chandra', album: 'Rangamarthanda', duration: '4:00', image: neeKannuNeeliSamudram , audio: '/audio/butta-bomma.mp3'},
+
+  // Add more songs here...
+];
+
+const TeluguSongs = () => {
+  const [currentSong, setCurrentSong] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  const handlePlayPause = (song) => {
+    if (currentSong && currentSong.id === song.id) {
+      if (isPlaying) {
+        audioRef.current.pause(); // Pause the audio
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play(); // Play the audio
+        setIsPlaying(true);
+      }
+    } else {
+      setCurrentSong(song);
+      setIsPlaying(true);
+    }
+  };
+
+  const handleEnded = () => {
+    setIsPlaying(false);
+  };
+
+  return (
+    <div className='box-0'>
+      <div className='h d-flex'><HomeIcon to="/">
+          <img src={homeIcon} alt="Home" />
+        </HomeIcon>
+      <h2 className='p-3 ps-5 pe-5 text-white'>Telugu Songs</h2></div>
+
+      <div className='song-list'>
+        {teluguSongs.map((song) => (
+          <div key={song.id} className='song-item'>
+            <img src={song.image} alt={song.title} className='song-image' />
+            <div className='song-details'>
+              <h4 className='song-title'>{song.title}</h4>
+              <p className='artist'>{song.artist}</p>
+              <p className='album'>{song.album}</p>
+              <p className='duration'>{song.duration}</p>
+            </div>
+            <button className='play-button' onClick={() => handlePlayPause(song)}>
+              {currentSong && currentSong.id === song.id && isPlaying ?'⏸' : '▶'}
+            </button>
+          </div>
+        ))}
+        {/* Audio player to play the current song */}
+        {currentSong && (
+          <audio
+            ref={audioRef} // Attach the ref to the audio element
+            src={currentSong.audio}
+            onEnded={handleEnded} // Stop playing when the song ends
+          />
+        )}
+         <div className='p-3'>
+          <Link to="/search" className='text-decoration-none text-white'>
+            Back to Categories
+          </Link>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default TeluguSongs;
+
+const HomeIcon = styled(Link)`
+  width: 20px;
+  height: -10px;
+  margin-right: 2px;
+  display: block;
+  cursor: pointer;
+`;
+

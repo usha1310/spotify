@@ -1,0 +1,141 @@
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color:black;
+  }
+  
+  .signup-form {
+    background-color:black;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .signup-form h1 {
+    margin-bottom: 1rem;
+    color: #ebf3f3;
+  }
+  
+  .signup-form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .signup-form .buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .signup-form .button,
+  .signup-form .button1,
+  .signup-form .button2 {
+    padding: 20px 30px;
+    background-color: #232121;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 30px;
+    height: 50px;
+  
+    
+  }
+  
+  
+  .signup-form .button1 {
+    background-color: #232121; 
+    border-radius: 30px; 
+    height: 50px;
+    
+  }
+  
+  .signup-form .button2 {
+    background-color:  #232121;
+    border-radius: 30px; 
+    height: 50px;
+    
+  }
+  
+  .signup-form .button:hover,
+  .signup-form .button1:hover,
+  .signup-form .button2:hover {
+    opacity: 0.8;
+    background-color: #1db954;
+  }
+  
+  .signup-form .next-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1db954;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+    
+  }
+  
+  .signup-form .next-button:hover {
+    background-color: #232121;
+  }
+  .spotify-logo {
+    display: block;
+    margin: 0 auto 20px; 
+    width: 60px; 
+    background-color: #232121;
+    box-sizing: border-box;
+  }
+  
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+  }
+  
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .button-logo {
+    margin-right: 10px; 
+    width: 30px; 
+    height: auto; 
+  }
+  .signup-form p {
+    color: #e9ebed;
+    text-decoration: none;
+  }
+  .signup-form a {
+    color: #e9ebed;
+  }
+
+  .spotify-logo{
+    height: 50px;
+  }
+
+  .error {
+    color: red;
+    margin-bottom: 1rem;
+  }
+  
+  .success {
+    color: green;
+    margin-bottom: 1rem;
+  }
